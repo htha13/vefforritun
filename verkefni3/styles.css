@@ -1,0 +1,142 @@
+/* almennar skilgreiningar  */
+
+html {
+    font-size: 18px;
+    border: 1px;
+}
+
+h1 {
+    margin-bottom: 1em;
+    font-size: 2em;
+    border: 1px solid #999;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+
+}
+
+h2 {
+    margin: 0em;
+    font-size: 1.66666em;
+    color: #999;
+}
+
+*.card-section > h2 {
+    display: none;
+}
+
+h3 {
+    font-size: 1em;
+    margin: 0em;
+}
+
+button {
+    border: 5px solid;
+    border-top-color: #999;
+    border-right-color: #999;
+    border-bottom-color: #666;
+    border-left-color: #666;
+    font-size: 1em;
+}
+button:hover {
+    border: 10px solid;
+    border-top-color: #666;
+    border-right-color: #666;
+    border-bottom-color: #999;
+    border-left-color: #999;
+}
+
+
+/* texti */
+/* Fyrsta textablokk */
+.card-text p:first-of-type {
+    /* Ég þurfti að bæta við margin-top: 0em; til að fá þetta
+    eins og á fyrirmynd reyndi allt og búinn að skoða endalaust
+    hierarchies fyrir ofan p en finn ekkert. */
+    margin-top: 0em;
+    font-size: 1em;
+    margin-left: 0em;    
+}
+.card-text p:first-of-type::first-line {
+    background-color: #ccc;
+}
+.card-text p:first-of-type::first-letter {
+    font-size: 2em;
+}
+/* Önnur textablokk */
+.card-text p:nth-of-type(2) {
+    font-size: 0.888888em;
+    margin-left: 2.7777777em;
+}
+.card-text p:nth-of-type(2)::first-line {
+    background-color: #ddd;
+}
+.card-text p:nth-of-type(2)::first-letter {
+    font-size: 2em;
+}
+/* Þriðja textablokk */
+.card-text p:nth-of-type(3) {
+    font-size: 0.777777em;
+    margin-left: 5.555555em;
+}
+.card-text p:nth-of-type(3)::first-line {
+    background-color: #eee;
+}
+.card-text p:nth-of-type(3)::first-letter {
+    font-size: 2em;
+}
+
+/* cards */
+.cards div.card {
+    display: inline-block;
+    width: 10em;
+    height: 10em;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 1px solid #000;
+}
+.cards div.card:nth-child(odd) {
+    background-color: #fff;
+    color: #333;
+}
+
+.cards div.card:nth-child(even) {
+    background-color: #333;
+    color: #fff;
+}
+
+*.cards:hover div.card:nth-child(odd) {
+    background-color: #333;
+    color: #fff;
+}
+
+*.cards:hover div.card:nth-child(even) {
+    background-color: #fff;
+    color: #333;
+}
+
+.cards {
+    max-width: 37em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cards button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.cards:after {
+    display: block;
+    content:"Ekki meira efni";
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding-top: 1em;
+    border: 1px solid #c00;
+    border-bottom: 0;
+    border-right: 0;
+    border-left: 0;
+}

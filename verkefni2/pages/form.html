@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="is">
+
+<head>
+    <meta charset="utf-8">
+    <title>Form</title>
+</head>
+
+<body>
+    <h1>Form</h1>
+    <form action="/skraning" method="post">
+        <fieldset>
+            <legend>Notandi</legend>
+            <div>
+                <label for="name">Notandanafn:</label>
+                <input type="text" id="name" autofocus>
+            </div>
+            <div>
+                <label for="email">Netfang:</label>
+                <input type="email" id="email">
+            </div>
+            <div>
+                <label for="password">Lykilorð:</label>
+                <input type="password" id="password">
+            </div>
+            <div>
+                <label for="password2">Lykilorð aftur:</label>
+                <input type="password" id="password2">
+                <label for="password2">Lykilorð verða að vera eins</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Spurningar</legend>
+            <div>
+                <p>Kyn:</p>
+                <label><input name="kyn" type="radio" value="kona"> Kona</label>
+                <label><input name="kyn" type="radio" value="karl"> Karl</label>
+                <label><input name="kyn" type="radio" value="annad"> Annað</label>
+            </div>
+            <div>
+                <label for="aldur">Aldur:</label>
+                <select name="aldur" id=aldur>
+                    <option value="">-Vinsamlegast veljið-</option>
+                    <option value="0-13">Yngri en 13 ára</option>
+                    <option value="13-20">13-20 ára</option>
+                    <option value="21-65">21-65 ára</option>
+                    <option value="65+">Eldri en 65 ára</option>
+                </select>   
+            </div>
+            <div>
+                <input name="senda" id="senda" type="checkbox" value="true" checked>
+                <label for="senda">Senda afrit af notandaupplýsingum á netfang.</label>
+            </div>
+            <div>
+                <label for="athugasemdir">Athugasemdir</label>
+                <textarea id="athugasemdir" name="athugasemdir" cols=25 rows=4></textarea>
+            </div>            
+        </fieldset>
+        <button>Senda</button>
+    </form>
+    <hr>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Forsíða</a></li>
+            <li><a href="form.html"><b>Form</b></a></li>
+            <li><a href="table.html">Tafla</a></li>
+            <li><a href="text.html">Texti</a></li> 
+        </ul>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-family: 'Open Sans', helvetica, arial, sans-serif;
+    font-size: 16px;
+  }
+  
+  main {
+    margin: 0 auto;
+    max-width: 1450px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* TODO taka ætti padding af main þegar komið er fyrir ofan hámarksbreidd */
+
+  @media (max-width: 699px) {    
+    .cards-sm .card__col {
+      width: 100%;     
+    }
+    .cards-sm .card{
+      max-width: none;
+      max-height: none;
+      border: none;
+      border-bottom: 2px solid #aaa;
+      
+      border-radius: 0em;
+
+    }
+    .cards-sm .card__content {
+      flex-direction: column;
+    }
+    .cards-sm .card__text {
+      margin-bottom: 1.25em;
+    }
+    .cards-sm .card__img {
+      padding-left: 0em;
+    }
+    .grid-sm {
+      width: 100%;     
+    }
+    .card .contain {
+      object-fit: contain;
+    }
+    .grid__row {
+      flex-direction: column;
+    }
+  }
+ 
+  
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .text {
+    margin-bottom: 20px;
+  }
+  
+  .text p {
+    margin-bottom: 20px;
+  }
+  
+  .image {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* grid fyrir efni, setja þarf upp í html */
+  
+  .grid__row {
+    display: flex;
+    flex-direction: row;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  
+  .grid__col {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  /* TODO setja upp grid fyrir >= 1000px */
+  
+  /* TODO koma mynd fyrir á öðrum stað í < 1000px */
+  
+  /* grid fyrir cards */
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  
+    background: #eee;
+  }
+  
+  /* TODO útfæra grid fyrir cards */
+
+  .card__row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+  }
+
+  .card__col {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  /*
+    .card kemur óbreytt úr sýnilausn á verkefni 5 fyrir utan responsive stíla og
+    að það fær `height: 100%;`
+    Sýnilausn verður gefin út við lok dags miðvikudaginn 3. okt
+  */
+  .card {
+    display: flex;
+    flex-direction: column;
+  
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 470px;
+    max-height: 300px;
+    overflow: hidden;
+  
+    background-color: #fff;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+  }
+  
+  .card__title {
+    margin-bottom: 20px;
+  
+    font-size: 1.375em;
+    line-height: 1;
+    word-break: break-word;
+  }
+  
+  .card__content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .card__text {
+    font-size: 1em;
+    line-height: 1.375;
+    overflow: auto;
+    word-break: break-word;
+  }
+  
+  .card__image {
+    padding-left: 20px;
+    flex: 0 0 150px;
+  }
+  
+  .card__img {
+    max-width: 100%;
+  }
+  
+  .card__tags {
+    margin-top: 10px;
+  
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  
+    list-style: none;
+  }
+  
+  .card__tag {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* TODO .card stílar úr v5 (eða sýnilausn...) */
+  
+  /* TODO responsive stílar fyrir .card */
+
+  @media (max-width: 699px) {    
+    .cards-sm .card__col {
+      width: 100%;     
+    }
+    .cards-sm .card{
+      max-width: none;
+      max-height: none;
+      border: none;
+      border-bottom: 2px solid #aaa;
+      
+      border-radius: 0em;
+
+    }
+    .cards-sm .card__content {
+      flex-direction: column;
+    }
+    .cards-sm .card__text {
+      margin-bottom: 1.25em;
+    }
+    .cards-sm .card__img {
+      padding-left: 0em;
+    }
+    .grid-sm {
+      width: 100%;     
+    }
+    .card .contain {
+      object-fit: contain;
+      order: 2;
+    }
+    .grid__row {
+      flex-direction: column;
+    }
+    .low-prio {
+      order: 999;
+    }
+  }
+ 
+  @media (min-width: 700px) {    
+    .cards-med  .card__col{
+      width: 50%;
+      margin-bottom: 2.5em;    
+    }
+  }
+  @media (min-width: 1000px) {    
+    .cards-lar .card__col{
+      width: 33.3333%;
+    }
+    .grid-lar {
+      width: 50%;
+      margin-bottom: 2.5em;
+    }
+  }
+
+  @media (min-width: 1490px) {
+    .padding-xl {
+      padding-left: 0;
+      padding-right: 0;      
+   }
+  }
