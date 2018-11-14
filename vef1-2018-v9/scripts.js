@@ -7,56 +7,78 @@ const API_URL = 'https://apis.is/isnic?domain=';
 const program = (() => {
   let domains;
 
+  function empty(el) {
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
+  }
+
   function displayError(error) {
     const container = domains.querySelector('.results');
 
-    while (container.firstChild) {
-      container.removeChild(container.firstChild);
-    }
+    empty(container);
 
     container.appendChild(document.createTextNode(error));
   }
-  let helpCounter = 0;
-  function helper(titill, info) {
-     //const `${'element'}${helpCounter}``;   
+  function helper(titill, info, descList) {
+    const element = document.createElement('dt');
+    element.appendChild(document.createTextNode(titill));
+    descList.appendChild(element);
+
+    const elementValue = document.createElement('dd');
+    elementValue.appendChild(document.createTextNode(info));
+    descList.appendChild(elementValue);
   }
 
   function displayDomain(domainsList) {
     if (domainsList.length === 0) {
-      displayError('Lén ekki skráð');
+      displayError('Lén er ekki skráð');
       return;
     }
 
-    const [{ domain, registrantname }] = domainsList;
-
-    const dl = document.createElement('dl');
-
-    const domainElement = document.createElement('dt');
-    domainElement.appendChild(document.createTextNode('Lén'));
-    dl.appendChild(domainElement);
-
-    const domainValueElement = document.createElement('dd');
-    domainValueElement.appendChild(document.createTextNode(domain));
-    dl.appendChild(domainValueElement);
-
-    const registrantnameElement = document.createElement('dt');
-    registrantnameElement.appendChild(document.createTextNode('Skráð'));
-    dl.appendChild(registrantnameElement);
-
-    const registrantnameValueElement = document.createElement('dd');
-    registrantnameValueElement.appendChild(document.createTextNode(registrantname));
-    dl.appendChild(registrantnameValueElement);
-
     const container = domains.querySelector('.results');
 
-    while (container.firstChild) {
-      container.removeChild(container.firstChild);
+    container.classList.toggle('loading');
+
+    const [{
+      domain, registrantname, address,
+      country, email, registered, expires, lastChange,
+    }] = domainsList;
+
+    const dl = document.createElement('dl');
+    function isoDate(date) {
+      return new Date(date).toISOString().split('T')[0];
     }
+
+    helper('Lén', domain, dl);
+    helper('Skráð', isoDate(registered), dl);
+    helper('Seinast breytt', isoDate(lastChange), dl);
+    helper('Rennur út', isoDate(expires), dl);
+    if (registrantname) helper('Skráningaraðili', registrantname, dl);
+    if (email) helper('Netfang', email, dl);
+    if (address) helper('Heimilisfang', address, dl);
+    if (country) helper('Land', country, dl);
+
+    empty(container);
 
     container.appendChild(dl);
   }
 
+  function loading() {
+    const container = domains.querySelector('.results');
+
+    empty(container);
+
+    const gif = document.createElement('IMG');
+    gif.src = 'loading.gif';
+    container.appendChild(gif);
+    container.classList.toggle('loading');
+
+    container.appendChild(document.createTextNode('Leita að léni...'));
+  }
+
   function fetchData(uri) {
+    loading();
     fetch(`${API_URL}${uri}`)
       .then((response) => {
         if (response.ok) {
@@ -81,7 +103,6 @@ const program = (() => {
     if (input.value === '') {
       displayError('Lén verður að vera strengur');
     } else {
-      console.log(input.value);
       fetchData(input.value);
     }
   }
