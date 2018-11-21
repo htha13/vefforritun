@@ -1,10 +1,13 @@
 // todo vísa í rétta hluti með import
+import { empty, el } from './helpers';
+import question from './question';
 
 // allar breytur hér eru aðeins sýnilegar innan þessa módúl
 
 let startButton; // takki sem byrjar leik
 let problem; // element sem heldur utan um verkefni, sjá index.html
 let result; // element sem heldur utan um niðurstöðu, sjá index.html
+let form; // element sem heldur utan um form, sja index.html
 
 let playTime; // hversu lengi á að spila? Sent inn gegnum init()
 let total = 0; // fjöldi spurninga í núverandi leik
@@ -32,6 +35,8 @@ function finish() {
  */
 function tick(current) {
   // todo uppfæra tíma á síðu
+  problem.querySelector('.problem__timer')
+    .appendChild(document.createTextNode(current));
 
   if (current <= 0) {
     return finish();
@@ -46,7 +51,10 @@ function tick(current) {
  * Býr til nýja spurningu og sýnir undir .problem__question
  */
 function showQuestion() {
-  // todo útfæra
+  currentProblem = question();
+  problem.classList.remove('problem--hidden');
+  problem.querySelector('.problem__question')
+    .appendChild(document.createTextNode(currentProblem.problem));
 }
 
 /**
@@ -59,6 +67,11 @@ function showQuestion() {
  */
 function start() {
   // todo útfæra
+  document.querySelector('.start.button').classList.toggle('button--hidden');
+  total = 0;
+  correct = 0;
+  tick(playTime);
+  showQuestion();
 }
 
 /**
@@ -71,6 +84,15 @@ function onSubmit(e) {
   e.preventDefault();
 
   // todo útfæra
+  const form = document.querySelector('form');
+  let svar = form.querySelector('problem__input').value;
+
+  if (svar === currentProblem.answer) {
+    correct += 1;
+  }
+  total += 1;
+  svar = '';
+  console.log(correct);
 
   showQuestion();
 }
@@ -99,4 +121,9 @@ export default function init(_playTime) {
   playTime = _playTime;
 
   // todo útfæra
+  startButton = document.querySelector('.start.button');
+  startButton.addEventListener('click', start);
+  problem = document.querySelector('.problem');
+  form = document.querySelector('form');
+  form.addEventListener('submit', onSubmit(this));
 }
